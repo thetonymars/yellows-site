@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@sanity/client@3.2.0/umd/sanityClient.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@portabletext/to-html@2.0.12/dist/portabletext-to-html.umd.js"></script>
+    <script src="https://unpkg.com/@sanity/block-content-to-html@2.0.0/umd/blocksToHtml.min.js"></script>
     <style>
         :root {
             --primary-blue: #2E75B6;
@@ -262,7 +262,11 @@
             }
 
             if (post.body) {
-                document.getElementById('post-body').innerHTML = portableTextToHtml.toHTML(post.body);
+                document.getElementById('post-body').innerHTML = blocksToHtml({
+                    blocks: post.body,
+                    projectId: 'p0rtrgcn',
+                    dataset: 'production'
+                });
             }
         }
 
