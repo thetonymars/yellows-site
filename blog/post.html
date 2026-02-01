@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@sanity/client@6.1.10/dist/index.browser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@sanity/client@3.2.0/dist/sanityClient.browser.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@portabletext/to-html@2.0.12/dist/portabletext-to-html.umd.js"></script>
     <style>
         :root {
@@ -206,11 +206,11 @@
     </article>
 
     <script>
-        const client = SanityClient.createClient({
+        const client = sanityClient({
             projectId: 'p0rtrgcn',
             dataset: 'production',
             useCdn: true,
-            apiVersion: '2023-01-01'
+            apiVersion: '2021-10-21'
         });
 
         const urlParams = new URLSearchParams(window.location.search);
