@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка... | MARKETING PRO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@sanity/client@6.1.10/dist/index.browser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@portabletext/to-html@2.0.12/dist/portabletext-to-html.umd.js"></script>
+    <style>
+        :root {
+            --primary-blue: #2E75B6;
+            --accent-gold: #F2D84B;
+            --dark: #1A1A2E;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        /* Post Hero */
+        .post-hero {
+            padding: 160px 0 60px;
+            text-align: center;
+        }
+
+        .post-category {
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .post-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .post-meta {
+            font-size: 16px;
+            color: #888;
+            margin-bottom: 40px;
+        }
+
+        .post-meta span {
+            margin: 0 10px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* Post Featured Image */
+        .featured-image {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Post Content */
+        .post-body {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .post-body h2 {
+            margin: 40px 0 20px;
+            font-size: 32px;
+            color: var(--dark);
+        }
+
+        .post-body p {
+            margin-bottom: 25px;
+        }
+
+        .post-body blockquote {
+            border-left: 5px solid var(--accent-gold);
+            padding-left: 30px;
+            margin: 40px 0;
+            font-style: italic;
+            font-size: 24px;
+            color: #555;
+        }
+
+        .post-body ul {
+            margin: 0 0 25px 30px;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: var(--primary-blue);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            color: var(--accent-gold);
+        }
+
+        @media (max-width: 768px) {
+            .post-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="container" style="max-width: 1200px;">
+            <a href="../index.html" class="logo">MARKETING<span>PRO</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#hero">Главная</a></li>
+                <li><a href="index.html">Блог</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article class="post-content">
+        <div class="container">
+            <header class="post-hero">
+                <a href="index.html" class="back-btn">← Назад к блогу</a>
+                <span id="post-category" class="post-category"></span>
+                <h1 id="post-title" class="post-title">Загрузка...</h1>
+                <div id="post-meta" class="post-meta"></div>
+            </header>
+
+            <img id="featured-image" src="" alt="" class="featured-image" style="display: none;">
+
+            <div id="post-body" class="post-body"></div>
+        </div>
+    </article>
+
+    <script>
+        const client = SanityClient.createClient({
+            projectId: 'p0rtrgcn',
+            dataset: 'production',
+            useCdn: true,
+            apiVersion: '2023-01-01'
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const slug = urlParams.get('slug');
+
+        async function fetchPost() {
+            if (!slug) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            try {
+                const query = `*[_type == "post" && slug.current == $slug][0] {
+                    title,
+                    "category": category,
+                    author,
+                    publishedAt,
+                    "imageUrl": featuredImage.asset->url,
+                    body
+                }`;
+
+                const post = await client.fetch(query, { slug });
+
+                if (!post) {
+                    document.getElementById('post-title').innerText = 'Пост не найден';
+                    return;
+                }
+
+                displayPost(post);
+            } catch (err) {
+                console.error(err);
+                document.getElementById('post-title').innerText = 'Ошибка загрузки';
+            }
+        }
+
+        function displayPost(post) {
+            document.title = `${post.title} | MARKETING PRO`;
+            document.getElementById('post-title').innerText = post.title;
+            document.getElementById('post-category').innerText = post.category || 'Маркетинг';
+            document.getElementById('post-meta').innerHTML = `
+                Опубликовано <span>${new Date(post.publishedAt).toLocaleDateString('ru-RU')}</span> | Автор <span>${post.author || 'Команда PRO'}</span>
+            `;
+
+            if (post.imageUrl) {
+                const img = document.getElementById('featured-image');
+                img.src = post.imageUrl;
+                img.alt = post.title;
+                img.style.display = 'block';
+            }
+
+            if (post.body) {
+                document.getElementById('post-body').innerHTML = portableTextToHtml.toHTML(post.body);
+            }
+        }
+
+        fetchPost();
+    </script>
+</body>
+
+</html>
