@@ -7,20 +7,31 @@
     <title>Маркетинговый Консультант | ПЕРЕСТАНЬ УГАДЫВАТЬ. НАЧНИ ПРОДАВАТЬ.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #2E75B6;
-            --accent-gold: #F2D84B;
-            --dark: #1A1A2E;
+            /* Palette */
             --white: #FFFFFF;
             --light-gray: #F8F9FA;
-            --footer-bg: #2B3544;
-            --footer-text: #CBD5E0;
-            --section-padding: 100px;
+            --primary-blue: #2E75B6;
+            --accent-gold: #F2D84B;
+            --text-dark: #1A1A2E;
+            --text-gray: #6B7280;
+            --footer-bg: #1A1A2E;
+
+            /* Dimensions & Spacing */
             --header-height: 80px;
+            --section-padding: 120px;
+            --container-width: 1200px;
+
+            /* Components */
+            --radius-card: 16px;
+            --radius-btn: 30px;
+            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 30px 60px rgba(46, 117, 182, 0.15);
         }
 
+        /* Reset & Base */
         * {
             margin: 0;
             padding: 0;
@@ -30,25 +41,66 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--white);
-            color: var(--dark);
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            font-size: 16px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         /* Typography */
         h1,
         h2,
-        h3 {
-            text-transform: uppercase;
+        h3,
+        h4 {
+            color: var(--primary-blue);
             font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 10px;
+            text-transform: uppercase;
+            line-height: 1.2;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        h1 {
+            font-size: 56px;
+            color: var(--primary-blue);
+            margin-bottom: 24px;
+        }
+
+        h1 span {
+            color: var(--text-dark);
+            display: block;
+        }
+
+        /* Dual color headline style */
+        h2 {
+            font-size: 42px;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: var(--text-gray);
+            margin-bottom: 24px;
+            font-size: 18px;
         }
 
         /* Buttons */
@@ -56,32 +108,51 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 18px 40px;
+            padding: 16px 32px;
             font-weight: 700;
-            font-size: 18px;
-            border: none;
+            font-size: 16px;
+            border-radius: var(--radius-btn);
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+            transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 4px;
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            transform: scale(1.02);
-            filter: brightness(90%);
+            letter-spacing: 0.5px;
+            border: none;
         }
 
         .btn-gold {
             background-color: var(--accent-gold);
-            color: var(--dark);
-            box-shadow: 0 4px 15px rgba(242, 216, 75, 0.2);
+            color: var(--text-dark);
+            box-shadow: 0 10px 20px rgba(242, 216, 75, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(242, 216, 75, 0.4);
         }
 
         .btn-blue {
             background-color: var(--primary-blue);
             color: var(--white);
+            box-shadow: 0 10px 20px rgba(46, 117, 182, 0.3);
+        }
+
+        .btn-blue:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(46, 117, 182, 0.4);
+            background-color: #24629e;
+        }
+
+        .link-arrow {
+            color: var(--primary-blue);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .link-arrow:hover {
+            gap: 12px;
+            color: var(--text-dark);
         }
 
         /* Navigation */
@@ -93,9 +164,9 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         nav .container {
@@ -108,146 +179,125 @@
         .logo {
             font-size: 24px;
             font-weight: 900;
-            color: var(--white);
-            text-decoration: none;
+            color: var(--primary-blue);
         }
 
         .logo span {
-            color: var(--accent-gold);
+            color: var(--text-dark);
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
-            list-style: none;
+            gap: 40px;
         }
 
         .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 700;
+            color: var(--text-dark);
+            font-weight: 600;
             font-size: 14px;
             text-transform: uppercase;
         }
 
         .nav-links a:hover {
-            color: var(--accent-gold);
+            color: var(--primary-blue);
         }
 
-        /* Hero Section */
-        .hero {
-            padding-top: calc(var(--header-height) + 80px);
-            padding-bottom: var(--section-padding);
-            background: linear-gradient(45deg, var(--dark) 0%, var(--primary-blue) 100%);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .hero-text {
-            flex: 0 0 60%;
-        }
-
-        .hero-text h1 {
-            font-size: 56px;
-            margin-bottom: 20px;
-        }
-
-        .hero-text h1 span {
-            color: var(--accent-gold);
-        }
-
-        .hero-text p {
-            font-size: 22px;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-
-        .hero-image {
-            flex: 0 0 40%;
-            position: relative;
-            right: -50px;
-            /* Bleed effect */
-        }
-
-        .hero-image img {
-            width: 100%;
-            border-radius: 0;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Section Global */
+        /* Sections */
         section {
             padding: var(--section-padding) 0;
         }
 
-        .section-title {
+        .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            max-width: 700px;
+            margin: 0 auto 80px;
         }
 
-        .section-title h2 {
-            font-size: 48px;
+        /* Hero */
+        .hero {
+            padding-top: calc(var(--header-height) + 60px);
+            padding-bottom: 100px;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative Circle */
+        .deco-circle {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(46, 117, 182, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .deco-1 {
+            top: -100px;
+            right: -200px;
+        }
+
+        .deco-2 {
+            bottom: -100px;
+            left: -200px;
+        }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-img-wrapper {
+            position: relative;
+            border-radius: 200px 200px 20px 20px;
+            /* Modern shape */
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            height: 600px;
+        }
+
+        .hero-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* Mission */
         .mission {
-            background-color: var(--white);
+            background-color: var(--light-gray);
             text-align: center;
         }
 
-        /* Programs Section */
+        /* Programs */
         .programs {
-            background-color: var(--dark);
-            color: var(--white);
-            position: relative;
+            background-color: var(--white);
         }
 
-        .program-grid {
+        .programs-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
 
         .program-card {
-            background: #1e1e35;
-            padding: 32px;
-            border-top: 4px solid var(--accent-gold);
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-soft);
             transition: 0.3s;
+            border-top: 4px solid var(--accent-gold);
             display: flex;
             flex-direction: column;
-            border-radius: 4px;
         }
 
         .program-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .program-card h3 {
-            color: var(--accent-gold);
-            margin-bottom: 20px;
-        }
-
-        .program-card p {
-            line-height: 1.6;
-            margin-bottom: 25px;
-            flex-grow: 1;
-        }
-
-        .link-arrow {
-            color: var(--accent-gold);
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
         /* Testimonials */
@@ -255,7 +305,7 @@
             background-color: var(--light-gray);
         }
 
-        .testimonial-grid {
+        .test-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
@@ -263,47 +313,39 @@
 
         .test-card {
             background: var(--white);
-            border-radius: 20px;
-            padding: 0;
+            border-radius: var(--radius-card);
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-soft);
             transition: 0.3s;
-            display: flex;
-            flex-direction: column;
         }
 
         .test-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .test-card img {
+        .test-media {
+            height: 220px;
             width: 100%;
-            height: 200px;
             object-fit: cover;
+            background: #eee;
         }
 
-        .test-content {
+        .test-body {
             padding: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
         }
 
         .test-quote {
             font-style: italic;
-            font-size: 16px;
+            color: var(--text-dark);
+            font-weight: 500;
+            margin-bottom: 20px;
         }
 
-        .test-author {
+        .test-meta {
+            font-size: 14px;
             font-weight: 700;
-            font-size: 16px;
-        }
-
-        .test-metric {
-            color: var(--accent-gold);
-            font-weight: 900;
-            font-size: 20px;
+            color: var(--primary-blue);
         }
 
         .video-box {
@@ -311,7 +353,7 @@
             cursor: pointer;
         }
 
-        .play-overlay {
+        .play-btn {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -323,19 +365,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .play-overlay::after {
+        .play-btn::after {
             content: '';
-            border-style: solid;
-            border-width: 10px 0 10px 15px;
-            border-color: transparent transparent transparent var(--dark);
-            margin-left: 5px;
+            border-left: 14px solid var(--text-dark);
+            border-top: 9px solid transparent;
+            border-bottom: 9px solid transparent;
+            margin-left: 4px;
         }
 
         /* Content Hub */
-        .content-hub {
-            background-color: var(--light-gray);
+        .hub {
+            background-color: var(--white);
         }
 
         .hub-grid {
@@ -346,245 +389,231 @@
 
         .hub-card {
             background: var(--white);
+            border: 1px solid #E5E7EB;
             padding: 40px;
-            border-radius: 4px;
-            transition: 0.3s;
+            border-radius: var(--radius-card);
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            gap: 24px;
+            align-items: flex-start;
+            transition: 0.3s;
         }
 
         .hub-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-blue);
+            box-shadow: var(--shadow-soft);
         }
 
         .hub-icon {
-            width: 50px;
-            height: 50px;
-            border: 2px solid var(--primary-blue);
+            width: 60px;
+            height: 60px;
+            background: var(--light-gray);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            flex-shrink: 0;
+            color: var(--primary-blue);
         }
 
         .hub-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--primary-blue);
-            fill: none;
+            width: 28px;
+            height: 28px;
             stroke-width: 2;
         }
 
-        .hub-card h3 {
-            font-size: 20px;
-        }
-
-        .hub-card p {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        /* Lead Magnets */
-        .lead-magnets {
+        /* Resources */
+        .resources {
             background-color: var(--primary-blue);
             color: var(--white);
         }
 
-        .magnet-grid {
+        .resources h2,
+        .resources p {
+            color: var(--white);
+        }
+
+        .res-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 40px;
         }
 
-        .magnet-card {
+        .res-card {
             background: var(--white);
-            color: var(--dark);
-            padding: 24px;
-            border-radius: 8px;
+            border-radius: var(--radius-card);
+            padding: 10px;
             display: flex;
-            gap: 30px;
             align-items: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            gap: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
         }
 
-        .magnet-visual {
-            width: 140px;
-            height: 180px;
-            background: #eee;
-            border-radius: 4px;
-            flex-shrink: 0;
+        .res-visual {
+            width: 120px;
+            height: 160px;
+            background: var(--light-gray);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .magnet-visual::before {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .magnet-info {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .magnet-label {
-            font-size: 12px;
-            font-weight: 900;
             color: var(--primary-blue);
-            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .res-visual.gold {
+            background: var(--accent-gold);
+            color: var(--text-dark);
+        }
+
+        .res-body {
+            padding: 20px 20px 20px 0;
+        }
+
+        .res-body h3 {
+            font-size: 20px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .res-body p {
+            font-size: 14px;
+            margin-bottom: 16px;
         }
 
         /* Final CTA */
-        .final-cta {
-            background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.9)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        .cta-section {
+            padding: 140px 0;
+            background: linear-gradient(rgba(46, 117, 182, 0.9), rgba(26, 26, 46, 0.9)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-attachment: fixed;
-            color: var(--white);
             text-align: center;
-            padding: 150px 0;
+            color: var(--white);
         }
 
-        .final-cta h2 {
-            font-size: 48px;
+        .cta-section h2 {
+            color: var(--white);
             margin-bottom: 20px;
         }
 
-        .urgency-text {
-            color: var(--accent-gold);
-            font-weight: 700;
-            margin-bottom: 20px;
-            font-size: 18px;
-        }
-
-        .btn-final {
-            padding: 25px 60px;
-            font-size: 20px;
-            font-weight: 700;
-            min-width: 320px;
-            min-height: 80px;
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            font-size: 22px;
         }
 
         /* Footer */
         footer {
-            background-color: var(--footer-bg);
-            color: var(--footer-text);
+            background: var(--footer-bg);
+            color: #9CA3AF;
             padding: 80px 0 40px;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
             margin-bottom: 60px;
         }
 
         .footer-col h4 {
             color: var(--white);
-            margin-bottom: 25px;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
+            margin-bottom: 24px;
+            font-size: 18px;
         }
 
         .footer-links a {
-            color: var(--footer-text);
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-gold);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-btn {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: 0.3s;
-            text-decoration: none;
-            color: var(--white);
-            font-weight: bold;
-        }
-
-        .social-btn:hover {
-            background: var(--accent-gold);
-            color: var(--dark);
-        }
-
-        .legal {
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 40px;
+            display: block;
+            margin-bottom: 12px;
+            color: #9CA3AF;
             font-size: 14px;
         }
 
-        /* Spacing utilities */
-        .mb-20 {
-            margin-bottom: 20px;
+        .footer-links a:hover {
+            color: var(--white);
         }
 
-        .mb-40 {
-            margin-bottom: 40px;
+        .socials {
+            display: flex;
+            gap: 16px;
         }
 
-        .gap-120 {
-            margin-top: 120px;
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
         }
 
+        .social-icon:hover {
+            background: var(--accent-gold);
+            color: var(--text-dark);
+        }
+
+        .legal {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 40px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Mobile */
         @media (max-width: 968px) {
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
+            :root {
+                --section-padding: 60px;
             }
 
-            .hero-image {
-                right: 0;
-                margin-top: 40px;
-            }
-
-            .hero-text h1 {
+            h1 {
                 font-size: 40px;
             }
 
-            .program-grid,
-            .testimonial-grid,
+            h2 {
+                font-size: 32px;
+            }
+
+            .hero-layout,
+            .programs-grid,
+            .test-grid,
             .hub-grid,
-            .magnet-grid,
+            .res-grid,
             .footer-grid {
                 grid-template-columns: 1fr;
             }
 
+            .hero-img-wrapper {
+                height: 400px;
+                order: -1;
+                border-radius: 20px;
+            }
+
             .nav-links {
                 display: none;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .hero-layout {
+                gap: 40px;
+            }
+
+            .res-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px;
+            }
+
+            .res-body {
+                padding: 0;
             }
         }
     </style>
@@ -600,255 +629,271 @@
                 <li><a href="#programs">Программы</a></li>
                 <li><a href="#results">Результаты</a></li>
                 <li><a href="blog/index.html">Блог</a></li>
-                <li><a href="#free">Ресурсы</a></li>
+                <li><a href="#resources">Ресурсы</a></li>
             </ul>
-            <a href="#final" class="btn btn-gold" style="padding: 10px 20px; font-size: 14px;">Консультация</a>
+            <a href="#final" class="btn btn-gold" style="padding: 12px 24px; font-size: 14px;">Консультация</a>
         </div>
     </nav>
 
-    <header id="hero" class="hero">
+    <!-- Hero -->
+    <section id="hero" class="hero">
+        <div class="deco-circle deco-1"></div>
         <div class="container">
-            <div class="hero-content">
+            <div class="hero-layout">
                 <div class="hero-text">
                     <h1>ПОСТРОЙ ПРИБЫЛЬНЫЙ БИЗНЕС.<br><span>НАЧНИ ПРОДАВАТЬ СЕГОДНЯ.</span></h1>
                     <p>Построй 7-значный бизнес с помощью проверенных маркетинговых стратегий и взрывного контента.</p>
-                    <a href="#final" class="btn btn-gold" style="min-width: 240px; min-height: 60px;">НАЧАТЬ СЕЙЧАС</a>
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                        <a href="#final" class="btn btn-gold">НАЧАТЬ СЕЙЧАС</a>
+                        <a href="#programs" class="btn"
+                            style="background: var(--light-gray); color: var(--text-dark);">Узнать Больше</a>
+                    </div>
                 </div>
-                <div class="hero-image">
+                <div class="hero-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                        alt="Consultant">
+                        alt="Marketing Expert">
                 </div>
             </div>
-        </div>
-    </header>
-
-    <section class="mission">
-        <div class="container">
-            <div class="section-title">
-                <h2>Кого Я Помогаю</h2>
-            </div>
-            <p style="max-width: 800px; margin: 0 auto; font-size: 20px;" class="mb-40">Я работаю с предпринимателями и
-                экспертами, которые устали от нестабильных продаж и готовы перейти на новый уровень масштабирования.</p>
-            <a href="#programs" class="btn btn-blue">Что Делать Первым</a>
         </div>
     </section>
 
+    <!-- Mission -->
+    <section class="mission">
+        <div class="container">
+            <div class="section-header">
+                <h2>Кого Я Помогаю</h2>
+                <p>Я работаю с предпринимателями и экспертами, которые устали от нестабильных продаж и готовы перейти на
+                    новый уровень масштабирования.</p>
+                <a href="#programs" class="link-arrow" style="font-size: 18px;">Что Делать Первым &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs -->
     <section id="programs" class="programs">
         <div class="container">
-            <div class="section-title">
-                <h2 style="color: var(--white)">ПРОГРАММЫ</h2>
+            <div class="section-header">
+                <h2>ПРОГРАММЫ ОБУЧЕНИЯ</h2>
+                <p>Выберите подходящий формат взаимодействия для достижения ваших целей.</p>
             </div>
-            <div class="program-grid">
+            <div class="programs-grid">
                 <div class="program-card">
                     <h3>БАЗОВЫЙ КУРС</h3>
-                    <p>Фундамент вашего маркетинга. От анализа ЦА до первых стабильных продаж через органический трафик.
-                    </p>
+                    <p style="flex-grow: 1;">Фундамент вашего маркетинга. От анализа ЦА до первых стабильных продаж
+                        через органический трафик.</p>
                     <a href="#" class="link-arrow">Узнать Больше &rarr;</a>
                 </div>
                 <div class="program-card">
                     <h3>МАСШТАБИРОВАНИЕ</h3>
-                    <p>Для тех, кто уже делает 500к+ и хочет выйти на миллионные обороты через автоматизированные
-                        воронки.</p>
+                    <p style="flex-grow: 1;">Для тех, кто уже делает 500к+ и хочет выйти на миллионные обороты через
+                        автоматизированные воронки.</p>
                     <a href="#" class="link-arrow">Узнать Больше &rarr;</a>
                 </div>
                 <div class="program-card">
                     <h3>МАСТЕРМАЙНД</h3>
-                    <p>Личное сопровождение и работа в группе топ-экспертов рынка для максимального результата.</p>
+                    <p style="flex-grow: 1;">Личное сопровождение и работа в группе топ-экспертов рынка для
+                        максимального результата.</p>
                     <a href="#" class="link-arrow">Узнать Больше &rarr;</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Results / Testimonials -->
     <section id="results" class="testimonials">
         <div class="container">
-            <div class="section-title">
+            <div class="section-header">
                 <h2>РЕЗУЛЬТАТЫ КЛИЕНТОВ</h2>
+                <p>Цифры и факты, которые говорят сами за себя.</p>
             </div>
-            <div class="testimonial-grid">
-                <!-- Card 1: Screenshot -->
+            <div class="test-grid">
+                <!-- 1 -->
                 <div class="test-card">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
-                        alt="Dashboard">
-                    <div class="test-content">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        class="test-media" alt="Dashboard">
+                    <div class="test-body">
                         <p class="test-quote">"Продажи выросли в 3 раза сразу после внедрения новой воронки."</p>
-                        <div class="test-author">Алексей Петров, Основатель InfoPro</div>
-                        <div class="test-metric">+240% КОНВЕРСИЯ</div>
+                        <div class="test-meta">Алексей Петров &#8226; +240% КОНВЕРСИЯ</div>
                     </div>
                 </div>
-                <!-- Card 2: Video Overlay -->
-                <div class="test-card video-box">
-                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
-                        alt="Client Video">
-                    <div class="play-overlay"></div>
-                    <div class="test-content">
-                        <div class="test-author">Марина Иванова, Эксперт</div>
-                        <div class="test-metric">1.2 МЛН ЧИСТЫМИ</div>
-                    </div>
-                </div>
-                <!-- Card 3: Text Result -->
+                <!-- 2 -->
                 <div class="test-card">
-                    <div class="test-content">
-                        <div style="font-size: 40px; color: var(--accent-gold);">"</div>
+                    <div class="video-box">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                            class="test-media" alt="Video Review">
+                        <div class="play-btn"></div>
+                    </div>
+                    <div class="test-body">
+                        <div class="test-meta">Марина Иванова &#8226; 1.2 МЛН ПРИБЫЛИ</div>
+                    </div>
+                </div>
+                <!-- 3 -->
+                <div class="test-card">
+                    <div class="test-body"
+                        style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                        <span
+                            style="font-size: 60px; color: var(--accent-gold); line-height: 0.5; margin-bottom: 20px;">“</span>
                         <p class="test-quote">"Никогда не думала, что маркетинг может быть таким системным и понятным."
                         </p>
-                        <div class="test-author">Дмитрий Волков, CEO TechLine</div>
-                        <div class="test-metric" style="font-size: 32px;">X5 ПРИБЫЛЬ</div>
+                        <div class="test-meta">Дмитрий Волков &#8226; X5 РОСТ</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="hub" class="content-hub">
+    <!-- Content Hub -->
+    <section id="hub" class="hub">
         <div class="container">
-            <div class="section-title">
+            <div class="section-header">
                 <h2>КОНТЕНТ-ХАБ</h2>
+                <p>Все знания в одном месте.</p>
             </div>
             <div class="hub-grid">
                 <div class="hub-card">
                     <div class="hub-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                            <polyline points="10 9 9 9 8 9" />
                         </svg>
                     </div>
-                    <h3>БЛОГ</h3>
-                    <p>Экспертные статьи о трендах маркетинга и психологии продаж.</p>
-                    <a href="blog/index.html" class="link-arrow">Читать →</a>
+                    <div>
+                        <h3>БЛОГ</h3>
+                        <p>Экспертные статьи о трендах маркетинга и психологии продаж.</p>
+                        <a href="blog/index.html" class="link-arrow">Читать Статьи &rarr;</a>
+                    </div>
                 </div>
                 <div class="hub-card">
                     <div class="hub-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
-                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                            <line x1="12" y1="19" x2="12" y2="23"></line>
-                            <line x1="8" y1="23" x2="16" y2="23"></line>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                            <line x1="12" y1="19" x2="12" y2="23" />
+                            <line x1="8" y1="23" x2="16" y2="23" />
                         </svg>
                     </div>
-                    <h3>ПОДКАСТ</h3>
-                    <p>Интервью с лидерами рынка о внутрянке больших проектов.</p>
-                    <a href="#" class="link-arrow">Слушать →</a>
+                    <div>
+                        <h3>ПОДКАСТ</h3>
+                        <p>Интервью с лидерами рынка о внутрянке больших проектов.</p>
+                        <a href="#" class="link-arrow">Слушать Выпуски &rarr;</a>
+                    </div>
                 </div>
                 <div class="hub-card">
                     <div class="hub-icon">
-                        <svg viewBox="0 0 24 24">
-                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <polygon points="23 7 16 12 23 17 23 7" />
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
                         </svg>
                     </div>
-                    <h3>YOUTUBE</h3>
-                    <p>Разборы реальных воронок и технические туториалы.</p>
-                    <a href="#" class="link-arrow">Смотреть →</a>
+                    <div>
+                        <h3>YOUTUBE</h3>
+                        <p>Разборы реальных воронок и технические туториалы.</p>
+                        <a href="#" class="link-arrow">Смотреть Видео &rarr;</a>
+                    </div>
                 </div>
                 <div class="hub-card">
                     <div class="hub-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                         </svg>
                     </div>
-                    <h3>СООБЩЕСТВО</h3>
-                    <p>Закрытый чат для обмена опытом и нетворкинга.</p>
-                    <a href="#" class="link-arrow">Вступить →</a>
+                    <div>
+                        <h3>СООБЩЕСТВО</h3>
+                        <p>Закрытый чат для обмена опытом и нетворкинга.</p>
+                        <a href="#" class="link-arrow">Вступить в Клуб &rarr;</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="free" class="lead-magnets">
+    <!-- Resources -->
+    <section id="resources" class="resources">
         <div class="container">
-            <div class="section-title">
-                <h2 style="color: var(--white)">БЕСПЛАТНЫЕ РЕСУРСЫ</h2>
+            <div class="section-header">
+                <h2 style="color: var(--white);">БЕСПЛАТНЫЕ РЕСУРСЫ</h2>
+                <p style="color: rgba(255,255,255,0.8);">Скачайте материалы, которые помогут вам внедрить изменения уже
+                    сегодня.</p>
             </div>
-            <div class="magnet-grid">
-                <div class="magnet-card">
-                    <div class="magnet-visual" style="background: var(--primary-blue); color: var(--white);">
-                        GUIDE
-                    </div>
-                    <div class="magnet-info">
-                        <div class="magnet-label">КНИГА</div>
+            <div class="res-grid">
+                <div class="res-card">
+                    <div class="res-visual">GUIDE</div>
+                    <div class="res-body">
                         <h3>ГАЙД ПО ВОРОНКАМ</h3>
                         <p>Как получать заявки на автомате без лишних затрат.</p>
-                        <a href="#" class="btn btn-gold" style="font-size: 14px; padding: 12px 25px;">Скачать →</a>
+                        <a href="#" class="btn btn-blue btn-sm" style="padding: 10px 20px; font-size: 14px;">Скачать
+                            PDF</a>
                     </div>
                 </div>
-                <div class="magnet-card">
-                    <div class="magnet-visual" style="background: var(--accent-gold); color: var(--dark);">
-                        CHECK
-                    </div>
-                    <div class="magnet-info">
-                        <div class="magnet-label">CHECKLIST</div>
+                <div class="res-card">
+                    <div class="res-visual gold">CHECK</div>
+                    <div class="res-body">
                         <h3>ЧЕК-ЛИСТ ПРОДАЖ</h3>
                         <p>15 пунктов для аудита вашего отдела и роста конверсии.</p>
-                        <a href="#" class="btn btn-blue" style="font-size: 14px; padding: 12px 25px;">Скачать →</a>
+                        <a href="#" class="btn btn-blue btn-sm" style="padding: 10px 20px; font-size: 14px;">Скачать
+                            PDF</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="final" class="final-cta">
+    <!-- Final CTA -->
+    <section id="final" class="cta-section">
         <div class="container">
             <h2>ГОТОВ К ВЗРЫВНОМУ РОСТУ?</h2>
-            <div class="urgency-text">Только 5 мест в месяц</div>
-            <p style="font-size: 24px; margin-bottom: 40px; opacity: 0.9;">Построй пошаговый план развития твоего
-                проекта на стратегической сессии.</p>
-            <a href="#" class="btn btn-gold btn-final">Записаться Сейчас</a>
+            <p>Только 5 мест в месяц. Построй пошаговый план развития твоего проекта.</p>
+            <a href="#" class="btn btn-gold" style="padding: 20px 50px; font-size: 20px;">ЗАПИСАТЬСЯ НА РАЗБОР</a>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <a href="#" class="logo">MARKETING<span>PRO</span></a>
-                    <p style="margin-top: 20px;">Системный подход к маркетингу для тех, кто строит бизнес на результат.
-                    </p>
+                    <a href="#" class="logo"
+                        style="color: var(--white); display: block; margin-bottom: 20px;">MARKETING<span>PRO</span></a>
+                    <p style="font-size: 14px; opacity: 0.6;">Мы помогаем бизнесам расти через системный маркетинг и
+                        проверенные стратегии.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>НАВИГАЦИЯ</h4>
-                    <ul class="footer-links">
-                        <li><a href="#hero">Главная</a></li>
-                        <li><a href="#programs">Программы</a></li>
-                        <li><a href="#results">Результаты</a></li>
-                        <li><a href="blog/index.html">Блог</a></li>
-                    </ul>
+                    <h4>Навигация</h4>
+                    <div class="footer-links">
+                        <a href="#hero">Главная</a>
+                        <a href="#programs">Программы</a>
+                        <a href="blog/index.html">Блог</a>
+                    </div>
                 </div>
                 <div class="footer-col">
-                    <h4>СОЦСЕТИ</h4>
-                    <div class="social-links">
-                        <a href="#" class="social-btn">TG</a>
-                        <a href="#" class="social-btn">VK</a>
-                        <a href="#" class="social-btn">YT</a>
+                    <h4>Контакты</h4>
+                    <div class="footer-links">
+                        <a href="mailto:hello@marketingpro.ru">hello@marketingpro.ru</a>
+                        <a href="#">Telegram</a>
+                    </div>
+                    <div class="socials" style="margin-top: 20px;">
+                        <a href="#" class="social-icon">IG</a>
+                        <a href="#" class="social-icon">YT</a>
+                        <a href="#" class="social-icon">TG</a>
                     </div>
                 </div>
             </div>
             <div class="legal">
-                &copy; 2024 MARKETING PRO. Все права защищены. | Политика конфиденциальности
+                &copy; 2026 Marketing Pro. Все права защищены.
             </div>
         </div>
     </footer>
 
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>
