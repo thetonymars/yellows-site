@@ -705,11 +705,12 @@ section {
     /* 48px minimum */
 }
 
+
 .res-card {
-    background: rgba(255, 255, 255, 0.05);
-    /* Subtle lift */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    /* Definition */
+    background: rgba(255, 255, 255, 0.07);
+    /* Increased from 0.05 for better definition */
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    /* Increased from 0.1 for subtle contrast */
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
     /* 34px */
