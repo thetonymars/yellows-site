@@ -327,10 +327,7 @@ nav .container {
     align-items: center;
 }
 
-.hero-text {
-    max-width: 60%;
-    /* Left content 60% max */
-}
+
 
 .hero-text h1 {
     margin-bottom: var(--space-md);
@@ -338,13 +335,14 @@ nav .container {
 }
 
 .hero-text>p {
-    font-size: 36px;
-    /* Golden Ratio: if H1 is ~60px, subtext 36-40px creates 1.6:1 */
-    line-height: 1.5;
-    /* 54px line-height */
+    font-size: 20px;
+    /* Reduced from 36px - was competing with headline */
+    line-height: 1.6;
+    /* Better readability */
     margin-bottom: var(--space-lg);
     /* 34px to buttons */
     font-weight: 400;
+    color: var(--text-secondary);
 }
 
 .hero-actions {
@@ -400,8 +398,8 @@ section {
 .mission .glass-panel {
     padding: var(--space-3xl);
     /* 89px */
-    max-width: var(--container-text);
-    /* 600px max */
+    max-width: 700px;
+    /* Wider for Russian text */
     margin: 0 auto;
     background: #fff;
     border: none;
@@ -409,15 +407,14 @@ section {
 }
 
 .mission .section-header {
-    text-align: left;
-    /* Left-align per requirement */
-    max-width: var(--container-text);
-    /* 600px */
+    text-align: center;
+    /* Restored - centered was intentional */
+    max-width: 700px;
 }
 
 .mission .section-header p {
-    text-align: left;
-    /* Body text left-aligned */
+    text-align: center;
+    /* Restored - works better for this content */
     font-size: 18px;
     line-height: 1.6;
     margin-bottom: 24px;
