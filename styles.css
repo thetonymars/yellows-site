@@ -235,19 +235,39 @@ ul {
     opacity: 0.8;
 }
 
-/* NAVIGATION */
+/* NAVIGATION - Apple Island Style */
 nav {
-    height: var(--header-height);
-    display: flex;
-    align-items: center;
     position: fixed;
-    top: 0;
-    width: 100%;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 1100px;
+    height: 64px;
     z-index: 1000;
-    transition: var(--transition);
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    /* Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+    /* Island Shape */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+
+    /* Floating Shadow */
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+nav:hover {
+    box-shadow:
+        0 12px 48px rgba(0, 0, 0, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 nav .container {
@@ -255,14 +275,16 @@ nav .container {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    padding: 0 32px;
+    height: 100%;
 }
 
 .logo {
     font-family: 'Outfit', sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 800;
     color: var(--text-primary);
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
 }
 
 .logo span {
@@ -271,20 +293,17 @@ nav .container {
 
 .nav-links {
     display: flex;
-    gap: var(--space-lg);
-    /* 34px */
+    gap: 32px;
+    align-items: center;
 }
 
 .nav-links a {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    /* text-transform: uppercase; -> Removing uppercase for better readability/modern feel? 
-       Prompt says "Weight distribution: Bold for primary, regular for secondary". 
-       I will keep uppercase as it was style, but reduce weight. */
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     color: var(--text-secondary);
     position: relative;
+    transition: var(--transition);
 }
 
 .nav-links a:hover {
@@ -308,10 +327,9 @@ nav .container {
 
 /* HERO SECTION */
 .hero {
-    padding-top: 120px;
-    /* Exactly 120px */
+    padding-top: 160px;
+    /* Increased to account for island menu */
     padding-bottom: 120px;
-    /* Exactly 120px */
     position: relative;
     overflow: hidden;
     background-color: var(--bg-white);
@@ -971,6 +989,24 @@ footer {
     color: var(--text-secondary);
     font-family: 'Outfit', sans-serif;
     letter-spacing: 1px;
+}
+
+/* ISLAND NAVIGATION - RESPONSIVE ADJUSTMENTS */
+@media (max-width: 968px) {
+    nav {
+        top: 12px;
+        width: calc(100% - 24px);
+        height: 56px;
+        border-radius: 16px;
+    }
+
+    nav .container {
+        padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
 }
 
 /* MOBILE MEDIA QUERIES */
